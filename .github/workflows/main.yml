@@ -33,5 +33,5 @@ jobs:
       - run: make
       - run: make test
         env:
-          - NDK_VER=r16b
-          - PYBUILD_SRC=$HOME/pybuild-src
+          NDK_VER: r16b
+          PYBUILD_SRC: $HOME/pybuild-src
