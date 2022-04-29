@@ -40,8 +40,8 @@ jobs:
           unzip -q android-ndk-$NDK_VER-$HOST_OS-x86_64.zip
 
           popd
-      - run: export ANDROID_NDK=$HOME/android-ndk-$NDK_VER
-      - run: echo ANDROID_NDK
+      - run: echo "ANDROID_NDK=$HOME/android-ndk-$NDK_VER" >> $GITHUB_ENV
+      - run: $echo ANDROID_NDK
       - run: python -m pybuild.clean
       - run: make
       - run: make test
