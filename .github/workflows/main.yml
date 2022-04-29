@@ -1,6 +1,10 @@
 name: Converted Workflow
 on: workflow_dispatch
 
+env:
+  NDK_VER: r16b
+  PYBUILD_SRC: $HOME/pybuild-src
+
 jobs:
   Build:
     runs-on: '${{ matrix.os }}'
@@ -9,7 +13,7 @@ jobs:
         os:
           - ubuntu-18.04
         python:
-          - 3.7-dev
+          - 3.7
     steps:
       - name: Install dependencies (Ubuntu)
         if: runner.os == 'Linux'
@@ -21,12 +25,9 @@ jobs:
         uses: gabrielfalcao/pyenv-action@v9
         with:
           default: "${{ matrix.python }}"
-          # command: pip install -U pip  # upgrade pip after installing python
+          command: pip install -U pip  # upgrade pip after installing python
 
-      # - name: Install dependencies
-      #   run: pip install -r requirements.txt
-
-      # - run: pyenv install 3.7-dev && pyenv global 3.7-dev
+      - run: pyenv install 3.7-dev && pyenv global 3.7-dev
       - run: pip install requests
       - run: >
           pushd $HOME
@@ -43,6 +44,3 @@ jobs:
       - run: python -m pybuild.clean
       - run: make
       - run: make test
-        env:
-          NDK_VER: r16b
-          PYBUILD_SRC: $HOME/pybuild-src
