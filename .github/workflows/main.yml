@@ -3,7 +3,7 @@ on: workflow_dispatch
 
 env:
   NDK_VER: r16b
-  PYBUILD_SRC: /pybuild-src
+  # PYBUILD_SRC=$HOME/pybuild-src
 
 jobs:
   Build:
@@ -48,6 +48,7 @@ jobs:
       - run: echo "ANDROID_NDK=$HOME/android-ndk-$NDK_VER" >> $GITHUB_ENV
       - run: echo "TARGET_ARCH_ANDROID=${{ matrix.arch }}" >> $GITHUB_ENV
       - run: echo "TARGET_ARCH_NAME=${{ matrix.arch }}" >> $GITHUB_ENV
+      - run: echo "PYBUILD_SRC=$HOME/pybuild-src" >> $GITHUB_ENV
       - run: python -m pybuild.clean
       - run: make
       - run: make test
