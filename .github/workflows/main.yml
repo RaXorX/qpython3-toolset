@@ -14,6 +14,11 @@ jobs:
           - ubuntu-18.04
         python:
           - 3.7
+        arch:
+          - arm
+          - arm64
+          - x86
+          - x86_64
     steps:
       - name: Install dependencies (Ubuntu)
         if: runner.os == 'Linux'
@@ -24,7 +29,7 @@ jobs:
       - name: Install python version
         uses: gabrielfalcao/pyenv-action@v9
         with:
-          default: "${{ matrix.python }}"
+          default: '${{ matrix.python }}'
           command: pip install -U pip  # upgrade pip after installing python
 
       - run: pyenv install 3.7-dev && pyenv global 3.7-dev
@@ -41,7 +46,8 @@ jobs:
 
           popd
       - run: echo "ANDROID_NDK=$HOME/android-ndk-$NDK_VER" >> $GITHUB_ENV
-      - run: echo $ANDROID_NDK
+      - run: echo "TARGET_ARCH_ANDROID=${{ matrix.arch }}" >> $GITHUB_ENV
+      - run: echo "TARGET_ARCH_NAME=${{ matrix.arch }}" >> $GITHUB_ENV
       - run: python -m pybuild.clean
       - run: make
       - run: make test
