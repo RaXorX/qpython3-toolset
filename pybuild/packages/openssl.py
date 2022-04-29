@@ -11,7 +11,7 @@ class OpenSSL(Package):
         'x86_64': 'android64-x86_64-clang',
     }
 
-    version = '1.1.1-pre2'
+    version = '1.1.1n'
     source = URLSource(f'https://www.openssl.org/source/openssl-{version}.tar.gz')
     patches = [
         LocalPatch('ndk-clang-targets'),
