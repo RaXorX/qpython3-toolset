@@ -3,7 +3,7 @@ on: workflow_dispatch
 
 env:
   NDK_VER: r16b
-  PYBUILD_SRC: $HOME/pybuild-src
+  PYBUILD_SRC: /pybuild-src
 
 jobs:
   Build:
@@ -15,10 +15,10 @@ jobs:
         python:
           - 3.7
         arch:
-          - arm
+          # - arm
           - arm64
-          - x86
-          - x86_64
+          # - x86
+          # - x86_64
     steps:
       - name: Install dependencies (Ubuntu)
         if: runner.os == 'Linux'
