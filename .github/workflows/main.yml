@@ -2,7 +2,7 @@ name: Converted Workflow
 on: workflow_dispatch
 
 env:
-  NDK_VER: r16b
+  NDK_VER: r23b
   # PYBUILD_SRC=$HOME/pybuild-src
 
 jobs:
